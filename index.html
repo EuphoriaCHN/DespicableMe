@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 400px;
+            height: 600px;
+            margin: 100px auto;
+            border: 1px solid red;
+            position: relative;
+        }
+
+        .body {
+            width: 250px;
+            height: 400px;
+            border: 5px solid black;
+            border-radius: 125px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ff0;
+            overflow: hidden;
+        }
+
+        .hair_one,
+        .hair_two {
+            width: 130px;
+            height: 100px;
+            border-top: 10px solid black;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .hair_one {
+            left: 100px;
+            top: 80px;
+            transform: rotate(40deg);
+            animation: hairs-one-animation 8s linear infinite;
+        }
+
+        .hair_two {
+            left: 100px;
+            top: 70px;
+            transform: rotate(50deg);
+            animation: hairs-two-animation 5s linear infinite;
+        }
+
+        .left_hand,
+        .right_hand {
+            width: 100px;
+            height: 100px;
+            border: 5px solid #000;
+            position: absolute;
+            top: 300px;
+            border-radius: 30px;
+            background-color: #ff0;
+            z-index: -1;
+        }
+
+        .left_hand {
+            left: 50px;
+            transform: rotate(30deg);
+        }
+
+        .right_hand {
+            right: 50px;
+            transform: rotate(-30deg);
+        }
+
+        .left_hand:after,
+        .right_hand:after {
+            content: "";
+            width: 30px;
+            height: 10px;
+            background-color: #000;
+            position: absolute;
+            border-radius: 4px;
+            top: 60px;
+        }
+
+        .left_hand:after {
+            left: 7px;
+            transform: rotate(-90deg);
+        }
+
+        .right_hand:after {
+            right: 7px;
+            transform: rotate(90deg);
+        }
+
+        .left_foot,
+        .right_foot {
+            width: 40px;
+            height: 60px;
+            background-color: #000;
+            position: absolute;
+            bottom: 50px;
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        .left_foot {
+            left: 155px;
+            animation: left-foot-animation 6s linear infinite;
+        }
+
+        .right_foot {
+            right: 155px;
+            animation: right-foot-animation 6s linear infinite;
+        }
+
+        .left_foot:after,
+        .right_foot:after {
+            content: "";
+            width: 60px;
+            height: 40px;
+            background-color: #000000;
+            border-radius: 20px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .left_foot:after {
+            right: 15px;
+        }
+
+        .right_foot:after {
+            left: 15px;
+        }
+
+        .eyes {
+            position: absolute;
+            top: 60px;
+            left: 25px;
+        }
+
+        .left_eye,
+        .right_eye {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 5px solid #000000;
+            float: left;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .left_eye:after,
+        .right_eye:after {
+            content: "";
+            width: 35px;
+            height: 20px;
+            background-color: #000000;
+            position: absolute;
+            top: 33px;
+            z-index: -1;
+        }
+
+        .left_eye:after {
+            transform: rotate(15deg);
+            left: -32px;
+        }
+
+        .right_eye:after {
+            transform: rotate(-15deg);
+            right: -32px;
+        }
+
+        .left_black_eye,
+        .right_black_eye {
+            width: 50px;
+            height: 50px;
+            background-color: #000000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            margin-top: -25px;
+            left: 50%;
+            margin-left: -25px;
+            animation: black-eye-animation 5s linear infinite;
+        }
+
+        .left_white_eye,
+        .right_white_eye {
+            width: 20px;
+            height: 20px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+
+        .left_white_eye {
+            left: 50%;
+            animation: left-white-eye-animation 5s linear infinite;
+        }
+
+        .right_white_eye {
+            right: 50%;
+            animation: right-white-eye-animation 5s linear infinite;
+        }
+
+        .mouth {
+            width: 60px;
+            height: 35px;
+            border: 5px solid black;
+            border-radius: 0 0 0 30px;
+            background-color: #fff;
+            position: absolute;
+            left: 90px;
+            top: 182px;
+            transform: rotate(-30deg);
+        }
+
+        .mouth:after {
+            content: "";
+            width: 85px;
+            height: 35px;
+            border-bottom: 5px solid black;
+            background-color: #ffff00;
+            position: absolute;
+            transform: rotate(30deg) translate(-10px, -14px);
+            border-radius: 5px;
+        }
+
+        .trousers {
+            width: 100%;
+            height: 150px;
+            position: absolute;
+            top: 260px;
+        }
+
+        .trousers_top {
+            width: 150px;
+            height: 50px;
+            background-color: blue;
+            border: 5px solid #000000;
+            border-bottom: blue;
+            position: absolute;
+            left: 45px;
+        }
+
+        .trousers_bottom {
+            background-color: #0000ff;
+            width: 250px;
+            height: 100px;
+            position: absolute;
+            top: 50px;
+            border-top: 5px solid #000000;
+            z-index: -1;
+        }
+
+        .trousers_top_left_belt,
+        .trousers_top_right_belt {
+            width: 100px;
+            height: 20px;
+            background-color: #00f;
+            border: 5px solid #000000;
+            position: absolute;
+            top: -24px;
+        }
+
+        .trousers_top_left_belt {
+            left: -74px;
+            transform: rotate(215deg);
+        }
+
+        .trousers_top_right_belt {
+            right: -74px;
+            transform: rotate(-35deg);
+        }
+
+        .trousers_top_left_belt:after,
+        .trousers_top_right_belt:after {
+            content: "";
+            border-radius: 50%;
+            background-color: #000000;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        @keyframes hairs-one-animation {
+            20% {
+                transform: rotate(25deg);
+            }
+
+            40% {
+                transform: rotate(40deg);
+            }
+
+            60% {
+                transform: rotate(30deg);
+            }
+
+            80% {
+                transform: rotate(50deg);
+            }
+
+            100% {
+                transform: rotate(40deg);
+            }
+        }
+
+        @keyframes hairs-two-animation {
+            10% {
+                transform: rotate(35deg);
+            }
+
+            30% {
+                transform: rotate(55deg);
+            }
+
+            40% {
+                transform: rotate(65deg);
+            }
+
+            60% {
+                transform: rotate(45deg);
+            }
+
+            80% {
+                transform: rotate(55deg);
+            }
+
+            100% {
+                transform: rotate(50deg);
+            }
+        }
+
+        @keyframes black-eye-animation {
+            5%, 45%, 55%, 95% {
+                transform: translate(0);
+            }
+
+            25% {
+                transform: translate(20px);
+            }
+
+            75% {
+                transform: translate(-20px);
+            }
+        }
+
+        @keyframes left-white-eye-animation {
+            5%, 45%, 55%, 95% {
+                transform: translate(0);
+            }
+
+            25% {
+                transform: translate(20px, 5px);
+            }
+
+            75% {
+                transform: translate(-40px, 5px);
+            }
+        }
+
+        @keyframes right-white-eye-animation {
+            5%, 45%, 55%, 95%  {
+                transform: translate(0);
+            }
+
+            25% {
+                transform: translate(40px, 5px);
+            }
+
+            75% {
+                transform: translate(-20px, 5px);
+            }
+        }
+
+        @keyframes right-foot-animation {
+            0%, 50% {
+                transform: rotate(0deg) translate(0);
+            }
+
+            25% {
+                transform: rotate(-20deg) translate(30px, 8px);
+            }
+        }
+
+        @keyframes left-foot-animation {
+            0%, 50%, 100% {
+                transform: rotate(0deg) translate(0, 0);
+            }
+
+            75% {
+                transform: rotate(20deg) translate(-30px, 8px);
+            }
+        }
+    </style>
+</head>
+<body>
+<!--.wrap>(.hair>(.hair_one+.hair_two))+(.body>((.eyes>((.left_eye>(.left_black_eye+.left_white_eye))+(.right_eye>(.right_black_eye+.right_white_eye))))+(.mouth+(.trousers>((.trousers_top>(.trousers_top_left_belt+.trousers_top_left_belt))+.trousers_bottom)))))+(.hand>(.left_hand+.right_hand))+(.foot>(.left_foot+.right_foot))-->
+<div class="wrap">
+    <div class="hair">
+        <div class="hair_one"></div>
+        <div class="hair_two"></div>
+    </div>
+    <div class="body">
+        <div class="eyes">
+            <div class="left_eye">
+                <div class="left_black_eye"></div>
+                <div class="left_white_eye"></div>
+            </div>
+            <div class="right_eye">
+                <div class="right_black_eye"></div>
+                <div class="right_white_eye"></div>
+            </div>
+        </div>
+        <div class="mouth"></div>
+        <div class="trousers">
+            <div class="trousers_top">
+                <div class="trousers_top_left_belt"></div>
+                <div class="trousers_top_right_belt"></div>
+            </div>
+            <div class="trousers_bottom"></div>
+        </div>
+    </div>
+    <div class="hand">
+        <div class="left_hand"></div>
+        <div class="right_hand"></div>
+    </div>
+    <div class="foot">
+        <div class="left_foot"></div>
+        <div class="right_foot"></div>
+    </div>
+</div>
+</body>
+</html>
